@@ -1,14 +1,50 @@
 <!DOCTYPE html>
-<html >
+<html ng-app="app">
 <head>
 	<title>My App</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/bootstrap_theme.css">
 	<link rel="stylesheet" type="text/css" href="/css/site.css">
+	<link rel="stylesheet" type="text/css" href="https://bootswatch.com/cyborg/bootstrap.min.css">
 </head>
 <body>
-	<h1>The App Works!</h1>
-	<script src="/javascript/app.js"></script>
+	<div ng-controller="oldController">
+	
+		<h3>Name of Car:</h3> <input type="text" class="form-control" ng-model="car">
+	
+			
+		<!-- <h3>Image:</h3> <input type="text" class="form-control" ng-model="img"> -->
+		<center><button  class="btn btn-success" ng-click="addCar()">Click to add Car to List</button>
+			<!-- creates car -->
+
+			<div class="well container" ng-repeat="car in carArray track by $index">
+				<h1>{{car}}</h1>
+				<img ng-src="{{img}}">
+				<button class="btn btn-danger" ng-click="carArray.splice($index, 1)"> Delete Car</button>
+
+				<button class="btn btn-warning" ng-click="startEdit($index)">Edit Car</button>
+			</div>
+			<!-- edit div -->
+
+			<div ng-show="editing">
+				<h3>Edit Car</h3>
+				
+				<input class="form-control" ng-model="editCar.name">
+				
+				<button class="btn btn-success" ng-click="submitEdit(carArray.$index)">Submit</button>
+			</div>
+
+		</center>
+	
+
+
+	</div>
+
+		
+
+
+		<script type="text/javascript" src="/angular/angular.min.js"></script>
+		<script src="/javascript/app.js"></script>
 </body>
 </html>
